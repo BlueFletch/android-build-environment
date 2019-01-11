@@ -34,6 +34,7 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   wget \
   unzip \
   vim \
+  python3.6 \
   && apt-get clean
 
 # Install Java
