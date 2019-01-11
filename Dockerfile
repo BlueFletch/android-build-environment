@@ -1,7 +1,7 @@
 # Android Dockerfile
 # Updated version based on uber/android-build-environment
 
-FROM ubuntu:14.04
+FROM ubuntu:17.10
 
 MAINTAINER Alan Lampa (alan.lampa@bluefletch.com)
 
@@ -16,53 +16,34 @@ ENV DOCKER_ANDROID_DISPLAY_NAME mobileci-docker
 ENV DEBIAN_FRONTEND noninteractive
 
 # Update apt-get
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get update
-RUN apt-get dist-upgrade -y
+#RUN rm -rf /var/lib/apt/lists/*
+#RUN apt-get update
+#RUN apt-get dist-upgrade -y
 
 # Installing packages
-RUN apt-get install -y \
-  autoconf \
-  build-essential \
-  bzip2 \
+RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   curl \
-  gcc \
+  expect \
   git \
-  groff \
-  lib32stdc++6 \
-  lib32z1 \
-  lib32z1-dev \
-  lib32ncurses5 \
-  lib32bz2-1.0 \
-  libc6-dev \
-  libgmp-dev \
-  libmpc-dev \
-  libmpfr-dev \
-  libxslt-dev \
-  libxml2-dev \
-  m4 \
-  make \
-  ncurses-dev \
-  ocaml \
-  openssh-client \
-  pkg-config \
-  python-software-properties \
-  rsync \
-  software-properties-common \
-  unzip \
+  libc6:i386 \
+  libgcc1:i386 \
+  libncurses5:i386 \
+  libstdc++6:i386 \
+  zlib1g:i386 \
+  openjdk-8-jdk \
   wget \
-  zip \
-  zlib1g-dev \
-  --no-install-recommends
+  unzip \
+  vim \
+  && apt-get clean
 
 # Install Java
-RUN apt-add-repository ppa:openjdk-r/ppa
-RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk
+#RUN apt-add-repository ppa:openjdk-r/ppa
+#RUN apt-get update
+#RUN apt-get -y install openjdk-8-jdk
 
 # Clean Up Apt-get
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get clean
+#RUN rm -rf /var/lib/apt/lists/*
+#RUN apt-get clean
 
 # Install Android SDK tools
 RUN mkdir -p /usr/local/android-sdk
