@@ -7,7 +7,7 @@ MAINTAINER Alan Lampa (alan.lampa@bluefletch.com)
 
 # Sets language to UTF8
 ENV LANG en_US.UTF-8
-RUN locale-gen $LANG
+#RUN locale-gen $LANG
 
 ENV DOCKER_ANDROID_LANG en_US
 ENV DOCKER_ANDROID_DISPLAY_NAME mobileci-docker
