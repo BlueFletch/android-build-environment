@@ -56,7 +56,7 @@ RUN rm sdk-tools-linux-4333796.zip
 ENV ANDROID_HOME /usr/local/android-sdk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin
 
-RUN echo y | sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3" "ndk-bundle"
+RUN echo y | sdkmanager "cmake;3.6.3155560" "platform-tools" "platforms;android-28" "build-tools;28.0.3" "ndk-bundle"
 
 # Environment variables
 ENV ANDROID_HOME /usr/local/android-sdk
