@@ -37,6 +37,9 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   python3.6 \
   && apt-get clean
 
+# create a link to python
+RUN ln -s /usr/bin/python3.6 /usr/bin/python
+
 # Install Java
 #RUN apt-add-repository ppa:openjdk-r/ppa
 #RUN apt-get update
