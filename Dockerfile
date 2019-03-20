@@ -34,11 +34,12 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   wget \
   unzip \
   vim \
-  python3.6 \
+  python2.7 \
+  sudo \
   && apt-get clean
 
 # create a link to python
-RUN ln -s /usr/bin/python3.6 /usr/bin/python
+RUN ln -s /usr/bin/python2.7 /usr/bin/python
 
 # Install Java
 #RUN apt-add-repository ppa:openjdk-r/ppa
@@ -93,6 +94,9 @@ RUN id $RUN_USER || adduser --uid "$RUN_UID" \
     --shell '/bin/sh' \
     --disabled-login \
     --disabled-password "$RUN_USER"
+    
+RUN adduser $RUN_USER sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Fix permissions
 RUN chown -R $RUN_USER:$RUN_USER $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
